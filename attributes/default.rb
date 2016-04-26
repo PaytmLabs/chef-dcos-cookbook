@@ -16,22 +16,61 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 default['dcos']['dcos_version'] = 'stable'
 default['dcos']['dcos_role'] = 'master' # 'master', 'slave' or 'slave_public'
 
 default['dcos']['cluster_name'] = 'DCOS'
-default['dcos']['master_discovery'] = 'static'
-default['dcos']['exhibitor_storage_backend'] = 'static'
-default['dcos']['bootstrap_url'] = 'file:///root/genconf/serve'
 
-# determine how to generate the genconf/ip-detect script
-# 'aws' or 'gce' will use the local ipv4 address from the metadata service
-# otherwise use 'eth0', 'eth1', etc. and it will get the ipaddress associated
+# TODO: support VRRP master discovery -ccampo 2016-04-26
+#default['dcos']['master_discovery'] = 'static'
+
+# TODO: support ZK and S3 storage backends  -ccampo 2016-04-26
+#default['dcos']['exhibitor_storage_backend'] = 'static'
+
+# Use this bootstrap_url value unless you have moved the DC/OS installer assets.
+default['dcos']['bootstrap_url'] = 'file:///opt/dcos_install_tmp'
+
+# Determine how to generate the genconf/ip-detect script
+# 'aws' or 'gce' will use the local IPv4 address from the metadata service
+# otherwise use 'eth0', 'eth1', etc. and it will get the IP address associated
 # with node['network']['interface'][VALUE]
 default['dcos']['ip-detect'] = 'eth0'
 
-# ipv4 only, must be odd number 1-9
+# This parameter specifies a space-separated list of domains that are tried
+# when an unqualified domain is entered (e.g. domain searches that do not
+# contain '.'). The Linux implementation of /etc/resolv.conf restricts the
+# maximum number of domains to 6 and the maximum number of characters the
+# setting can have to 256. For more information, see man /etc/resolv.conf.
+default['dcos']['dns_search'] = []
+
+# List of agent node IP addresses; IPv4 only
+default['dcos']['agent_list'] = []
+
+# List of master node IP addresses; IPv4 only, must be odd number 1-9
 default['dcos']['master_list'] = []
-# upstream DNS for MesosDNS
+
+# Upstream DNS for MesosDNS; default values are Google's DNS servers
 default['dcos']['resolvers'] = ['8.8.8.8', '8.8.4.4']
+
+# The SSH port to be used to connect to all nodes during the install process
+default['dcos']['ssh_port'] = 22
+
+# The SSH user to be used to connect to all nodes during the install process
+default['dcos']['ssh_user'] = 'centos'
+
+# The SSH key path to be used to connect to all nodes during the install process
+default['dcos']['ssh_key_path'] = '/genconf/ssh-key'
+
+# This parameter specifies the allowable amount of time, in seconds, for
+# an action to begin after the process forks. This parameter is not the
+# complete process time. The default value is 120 seconds. Tip: If have a
+# slower network environment, consider changing to process_timeout: 600.
+default['dcos']['process_timeout'] = 120
+
+# Specifies whether to enable OAuth authentication for your cluster.
+default['dcos']['oauth_enabled'] = true
+
+# Specifies whether to enable sharing of anonymous data for your cluster.
+default['dcos']['telemetry_enabled'] = false
+
+
