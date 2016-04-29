@@ -19,8 +19,7 @@ resolvers:
   - <%= ip %>
 <% end %>
 process_timeout: <%= node["dcos"]["process_timeout"] %>
-oauth_enabled: <%= node["dcos"]["oauth_enabled"] %>
-telemetry_enabled: <%= node["dcos"]["telemetry_enabled"] %>
+oauth_enabled: '<%= node["dcos"]["oauth_enabled"] %>'
+telemetry_enabled: '<%= node["dcos"]["telemetry_enabled"] %>'
 ssh_port: <%= node["dcos"]["ssh_port"] %>
 ssh_user: <%= node["dcos"]["ssh_user"] %>
-ssh_key_path: <%= node["dcos"]["ssh_key_path"] %>
