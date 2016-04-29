@@ -50,7 +50,7 @@ default['dcos']['agent_list'] = []
 # List of master node IP addresses; IPv4 only, must be odd number 1-9
 default['dcos']['master_list'] = []
 
-# Upstream DNS for MesosDNS; default values are Google's DNS servers
+# Upstream DNS for MesosDNS; default values are Google's DNS servers (max of 3 resolvers allowed)
 default['dcos']['resolvers'] = ['8.8.8.8', '8.8.4.4']
 
 # The SSH port to be used to connect to all nodes during the install process
@@ -58,6 +58,9 @@ default['dcos']['ssh_port'] = 22
 
 # The SSH user to be used to connect to all nodes during the install process
 default['dcos']['ssh_user'] = 'centos'
+
+# The full path of the SSH key used to connect to all the cluster nodes (MUST BE PRESENT ON BOOTSTRAP NODE)
+default['dcos']['ssh_key_file'] = '/root/ssh_key'
 
 # This parameter specifies the allowable amount of time, in seconds, for
 # an action to begin after the process forks. This parameter is not the

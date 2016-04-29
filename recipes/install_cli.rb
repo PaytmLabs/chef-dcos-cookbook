@@ -35,11 +35,21 @@ directory '/root/genconf' do
   mode '0755'
 end
 
+# Generate the config.yaml file
 template '/root/genconf/config.yaml' do
   source 'config.yaml.erb'
 end
 
-# Generate the /root/genconf/ip-detect script
+# Copy SSH key
+file '/root/genconf/ssh_key' do
+  content IO.read(node['dcos']['ssh_key_file'])
+  owner 'root'
+  group 'root'
+  mode '0600'
+  action :create
+end
+
+# Generate the ip-detect script
 include_recipe 'dcos::_ip-detect'
 
 # Start DC/OS install process
