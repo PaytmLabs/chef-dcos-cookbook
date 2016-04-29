@@ -19,6 +19,7 @@
 default['dcos']['dcos_version'] = 'stable'
 default['dcos']['dcos_role'] = 'master' # 'master', 'slave' or 'slave_public'
 
+# The name of your DCOS cluster
 default['dcos']['cluster_name'] = 'DCOS'
 
 # TODO: support VRRP master discovery -ccampo 2016-04-26
@@ -58,19 +59,14 @@ default['dcos']['ssh_port'] = 22
 # The SSH user to be used to connect to all nodes during the install process
 default['dcos']['ssh_user'] = 'centos'
 
-# The SSH key path to be used to connect to all nodes during the install process
-default['dcos']['ssh_key_path'] = '/genconf/ssh-key'
-
 # This parameter specifies the allowable amount of time, in seconds, for
 # an action to begin after the process forks. This parameter is not the
-# complete process time. The default value is 120 seconds. Tip: If have a
-# slower network environment, consider changing to process_timeout: 600.
-default['dcos']['process_timeout'] = 120
+# complete process time. The default value is 600 seconds. Tip: If have a
+# faster network environment, consider changing to process_timeout: 120.
+default['dcos']['process_timeout'] = 600
 
 # Specifies whether to enable OAuth authentication for your cluster.
-default['dcos']['oauth_enabled'] = true
+default['dcos']['oauth_enabled'] = 'true'
 
 # Specifies whether to enable sharing of anonymous data for your cluster.
-default['dcos']['telemetry_enabled'] = false
-
-
+default['dcos']['telemetry_enabled'] = 'false'
