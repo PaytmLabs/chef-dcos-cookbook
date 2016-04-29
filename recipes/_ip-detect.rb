@@ -30,6 +30,11 @@ elsif node['dcos']['ip-detect'].eql? 'gce'
     source 'gce'
     mode '0755'
   end
+elsif node['dcos']['ip-detect'].eql? 'eth0'
+  cookbook_file '/root/genconf/ip-detect' do
+    source 'eth0'
+    mode '0755'
+  end
 else
   # find the ipaddress for that interface
   interface = node['dcos']['ip-detect']
