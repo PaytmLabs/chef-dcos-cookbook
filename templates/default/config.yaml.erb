@@ -1,13 +1,25 @@
 ---
-cluster_name: '<%= node["dcos"]["cluster_name"] %>'
-master_discovery: '<%= node["dcos"]["master_discovery"] %>'
-exhibitor_storage_backend: '<%= node["dcos"]["exhibitor_storage_backend"] %>'
-bootstrap_url: '<%= node["dcos"]["bootstrap_url"] %>'
+agent_list:
+<% node["dcos"]["agent_list"].each do |ip| %>
+  - <%= ip %>
+<% end %>
+bootstrap_url: <%= node["dcos"]["bootstrap_url"] %>
+cluster_name: <%= node["dcos"]["cluster_name"] %>
+# TODO: support ZK and S3 storage backends -ccampo 2016-04-26
+exhibitor_storage_backend: static
+# TODO: support VRRP master discovery -ccampo 2016-04-26
+master_discovery: static
 master_list:
 <% node["dcos"]["master_list"].each do |ip| %>
   - <%= ip %>
 <% end %>
+dns_search: <%= node["dcos"]["dns_search"].join(' ') %>
 resolvers:
 <% node["dcos"]["resolvers"].each do |ip| %>
   - <%= ip %>
 <% end %>
+process_timeout: <%= node["dcos"]["process_timeout"] %>
+oauth_enabled: '<%= node["dcos"]["oauth_enabled"] %>'
+telemetry_enabled: '<%= node["dcos"]["telemetry_enabled"] %>'
+ssh_port: <%= node["dcos"]["ssh_port"] %>
+ssh_user: <%= node["dcos"]["ssh_user"] %>
