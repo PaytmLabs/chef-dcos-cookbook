@@ -1,7 +1,9 @@
 ---
+<% if not node["dcos"]["agent_list"].empty? %>
 agent_list:
 <% node["dcos"]["agent_list"].each do |ip| %>
   - <%= ip %>
+<% end %>
 <% end %>
 bootstrap_url: <%= node["dcos"]["bootstrap_url"] %>
 cluster_name: <%= node["dcos"]["cluster_name"] %>
@@ -13,7 +15,9 @@ master_list:
 <% node["dcos"]["master_list"].each do |ip| %>
   - <%= ip %>
 <% end %>
+<% if not node["dcos"]["dns_search"].empty? %>
 dns_search: <%= node["dcos"]["dns_search"].join(' ') %>
+<% end %>
 resolvers:
 <% node["dcos"]["resolvers"].each do |ip| %>
   - <%= ip %>
