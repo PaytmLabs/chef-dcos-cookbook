@@ -29,7 +29,7 @@ default['dcos']['cluster_name'] = 'DCOS'
 #default['dcos']['exhibitor_storage_backend'] = 'static'
 
 # Use this bootstrap_url value unless you have moved the DC/OS installer assets.
-default['dcos']['bootstrap_url'] = 'file:///opt/dcos_install_tmp'
+default['dcos']['bootstrap_url'] = 'file:///root/genconf/serve'
 
 # Determine how to generate the genconf/ip-detect script
 # 'aws' or 'gce' will use the local IPv4 address from the metadata service
