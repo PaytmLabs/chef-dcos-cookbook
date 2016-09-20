@@ -21,10 +21,11 @@ end
 
 # Generate the /root/genconf/ip-detect script
 include_recipe 'dcos::_ip-detect'
+include_recipe 'dcos::_installer_url'
 
 # Download DC/OS installer
 remote_file '/root/dcos_generate_config.sh' do
-  source 'https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh'
+  source node['dcos']['installer_url']
   mode '0755'
 end
 

@@ -7,6 +7,9 @@ agent_list:
 <% end %>
 bootstrap_url: <%= node["dcos"]["bootstrap_url"] %>
 cluster_name: <%= node["dcos"]["cluster_name"] %>
+<% if not node["dcos"]["customer_key"].nil? %>
+customer_key: <%= node["dcos"]["customer_key"] %>
+<% end %>
 # TODO: support ZK and S3 storage backends -ccampo 2016-04-26
 exhibitor_storage_backend: static
 # TODO: support VRRP master discovery -ccampo 2016-04-26

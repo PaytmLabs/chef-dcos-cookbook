@@ -16,7 +16,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+# stable or EarlyAccess
 default['dcos']['dcos_version'] = 'stable'
+# open or enterprise
+default['dcos']['dcos_edition'] = 'open'
+
+# Only applies to enterprise edition installs
+default['dcos']['customer_key'] = nil
+
 default['dcos']['dcos_role'] = 'master' # 'master', 'slave' or 'slave_public'
 
 # The name of your DCOS cluster

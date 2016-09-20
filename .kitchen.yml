@@ -17,4 +17,5 @@ suites:
       - recipe[dcos::default]
     attributes:
       dcos:
+        dcos_edition: 'open'
         master_list: ['127.0.0.1']

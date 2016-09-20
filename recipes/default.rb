@@ -38,10 +38,12 @@ docker_service 'default' do
   action [:create, :start]
 end
 
+include_recipe 'dcos::_installer_url'
+
 # Note this link does not have versioning, so using it will always be the latest
 # DCOS from https://dcos.io/docs/1.7/administration/installing/local/
 remote_file '/root/dcos_generate_config.sh' do
-  source 'https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh'
+  source node['dcos']['installer_url']
   mode '0755'
 end
 
